@@ -2,11 +2,11 @@
 	"plugin_id": "toggle",
 	"name_fr": "Toggle",
 	"icon": "toggle.png",
-	"version": "1.0",
+	"version": "1.1",
 	"creation_date": "2018-01-19",
-	"modification_date": "2018-01-19",
-	"author": "Influman",
-	"description_fr": "Commander facilement la bascule de l'état d'un périphérique (avec valeurs 0-100)",
+	"modification_date": "2018-02-06",
+	"author": "Influman & merguez07",
+	"description_fr": "Commander facilement la bascule de l'état d'un périphérique avec valeurs en VAR2 et VAR3 (0-100 par défaut)",
 	"description_en": "",
 	"description_es": "",
 	"description_it": "",
@@ -25,7 +25,21 @@
 			"parameter": "device_api",
 			"description": "Périphérique à basculer",
 			"xtype": "combo",
-			"field": "store : getCombo('/json/list_all.php?value_type=list&has_value=0,100'), displayField: 'label', valueField: 'id', typeAhead: true, forceSelection: true, triggerAction: 'all', selectOnFocus: true, editable: false, shadow:true, mode: 'local', width: 250, listWidth: 300, allowBlank: true"
+			"field": "store : getCombo('/json/list_all.php?value_type=list'), displayField: 'label', valueField: 'id', typeAhead: true, forceSelection: true, triggerAction: 'all', selectOnFocus: true, editable: false, shadow:true, mode: 'local', width: 250, listWidth: 300, allowBlank: true"
+    },
+    {
+      "parameter": "value_State1",
+      "description": "Valeur de l'état 1 (0 si omis)",
+			"xtype": "textfield",
+			"default_value": "",
+			"field": "width:400, allowBlank:false"
+    },
+    {
+      "parameter": "value_State2",
+      "description": "Valeur de l'état 2 (100 si omis)",
+			"xtype": "textfield",
+			"default_value": "",
+			"field": "width:400, allowBlank:false"
     }
 	],
 	"scripts":
@@ -47,8 +61,8 @@
 			"parameters":
 			{
 				"VAR1": "plugin.parameters.device_api",
-				"VAR2": "",
-				"VAR3": "",
+				"VAR2": "plugin.parameters.value_State1",
+				"VAR3": "plugin.parameters.value_State2",
 				"value_type": "list",
 				"ignore_errors": 3,
 				"RAW_URL": "",
@@ -57,7 +71,7 @@
 			},
 			"values":
 			[
-				{ "value": "1", "description": "Toggle", "icon": "toggle.png", "http_url": "http://localhost/script/?exec=toggle.php", "http_type": "GET",  "http_params": "&periph=[VAR1]" }
+				{ "value": "1", "description": "Toggle", "icon": "toggle.png", "http_url": "http://localhost/script/?exec=toggle.php", "http_type": "GET",  "http_params": "&periph=[VAR1]&val1=[VAR2]&val2=[VAR3]" }
 			]
     }
   ]
