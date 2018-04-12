@@ -32,14 +32,14 @@
       "description": "Valeur de l'état 1 (0 si omis)",
 			"xtype": "textfield",
 			"default_value": "",
-			"field": "width:400, allowBlank:true"
+			"field": "width:400, allowBlank:false"
     },
     {
       "parameter": "value_State2",
       "description": "Valeur de l'état 2 (100 si omis)",
 			"xtype": "textfield",
 			"default_value": "",
-			"field": "width:400, allowBlank:true"
+			"field": "width:400, allowBlank:false"
     }
 	],
 	"scripts":
