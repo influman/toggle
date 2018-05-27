@@ -2,6 +2,7 @@
    //***********************************************************************************************************************
    // V1.0 : Script qui permet la bascule d'un p�riph�rique : influman
    // V1.1 : rajout possible des valeurs ON et Off dans VAR2 et VAR3 : Merguez07
+   // V1.2 : optim jbourdin
    //*************************************** API eedomus ******************************************************************
 
 // recuperation des infos depuis la requete
