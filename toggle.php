@@ -1,30 +1,27 @@
 <?php
    //***********************************************************************************************************************
-   // V1.0 : Script qui permet la bascule d'un périphérique : influman
+   // V1.0 : Script qui permet la bascule d'un pï¿½riphï¿½rique : influman
    // V1.1 : rajout possible des valeurs ON et Off dans VAR2 et VAR3 : Merguez07
    //*************************************** API eedomus ******************************************************************
-   
-   // recuperation des infos depuis la requete
-  
-    $periphId=getArg("periph");
-    $val1 = getArg("val1");
-    $val2 = getArg("val2");
-    if ($val1 == '') {
-        $val1 = 0;
-    }
-    
-    if ($val2 == '') {
-        $val2 = 100;
-    }
 
-    if ($periphId != '' and $periphId != 'plugin.parameters.device_id') {
-        $periphvalue = getValue($periphId);  
-      if  ($periphvalue['value'] == $val1) {
-        setValue($periphId, $val2, $verify_value_list = false, $update_only = false);
-        } else { 
-        setValue($periphId, $val1, $verify_value_list = false, $update_only = false);
-        }
-    } 
+// recuperation des infos depuis la requete
+$periphId = getArg("periph", true);
+$val1     = getArg("val1", false, 0);
+$val2     = getArg("val2", false, 100);
 
-die();
-?>
+// No exec if not for plugin.parameters.device_id
+if ($periphId == 'plugin.parameters.device_id') {
+    die;
+}
+$periphinfo  = getValue($periphId);
+$periphvalue = $periphinfo['value'];
+
+// set to val2 if already on val1
+if ($periphvalue == $val1) {
+    setValue($periphId, $val2);
+    die;
+}
+
+// set to val1 if not on val1
+setValue($periphId, $val1);
+die;
